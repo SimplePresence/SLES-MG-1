@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_to_cus_tbl` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3413 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sles.jadwal_to_cus_tbl: ~4 rows (approximately)
+-- Dumping data for table sles.jadwal_to_cus_tbl: ~9 rows (approximately)
 INSERT INTO `jadwal_to_cus_tbl` (`id`, `kd_delivery`, `do_no`, `date`, `time`, `id_cus`, `to_cus`, `id_do`, `do_addr1`, `jenis_vehicle`, `keterangan`, `status`, `created_by`, `created_date`) VALUES
 	(1, 25060519, '8101268186', '2025-06-09', '05:00', 'T05', 'PT. TS TECH INDONESIA', 'TST', 'KAWASAN INDUSTRI KOTA BUKIT INDAH', 'WING BOX', 'KB', 'ACTIVE', 'PPC', '2025-06-05 15:04:33'),
 	(2, 25060520, '8101268204', '2025-06-09', '06:00', 'I01', 'PT. SUZUKI INDOMOBIL MOTOR ( SIM R2 )', 'SIM1', 'Jl. Diponegoro Km 38.2 Jati Mulya', 'TRUCK BOX', 'KB', 'ACTIVE', 'PPC', '2025-06-05 15:07:33'),
@@ -159,19 +159,29 @@ CREATE TABLE IF NOT EXISTS `milkrun` (
   `driver` varchar(50) DEFAULT NULL,
   `vendor_name` varchar(50) DEFAULT NULL,
   `vendor_id` int DEFAULT NULL,
-  `dn_number` varchar(50) DEFAULT NULL,
-  `no_sj` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `date_sj` datetime DEFAULT NULL,
+  `dnsj_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date_sj` date DEFAULT NULL,
+  `status_milkrun` enum('SCAN','MANUAL') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'MANUAL',
   `status` enum('BAWA_BARANG','KOSONG') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table sles.milkrun: ~1 rows (approximately)
-INSERT INTO `milkrun` (`id`, `no_pol`, `driver`, `vendor_name`, `vendor_id`, `dn_number`, `no_sj`, `date_sj`, `status`, `date`, `created_at`, `updated_at`) VALUES
-	(22, 'dger', 'rgerg', 'PT.TEST', 130212, NULL, '2g2fwe', '2025-06-11 00:00:00', 'KOSONG', '2025-06-11 00:00:00', '2025-06-11 02:31:46', '2025-06-11 02:31:46');
+-- Dumping data for table sles.milkrun: ~11 rows (approximately)
+INSERT INTO `milkrun` (`id`, `no_pol`, `driver`, `vendor_name`, `vendor_id`, `dnsj_number`, `date_sj`, `status_milkrun`, `status`, `date`, `created_at`, `updated_at`) VALUES
+	(25, 'ergerg', 'ergerg', 'PT.TEST', 130212, 'yjtyj', '2025-06-11', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 04:41:55', '2025-06-11 04:41:55'),
+	(26, 'BE 2222 CE', 'Greg', 'PT.TEST', 130212, '55412', '2025-06-12', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 04:42:47', '2025-06-11 04:42:47'),
+	(27, 'BE 2222 CE', 'Greg', 'PT.TEST', 130212, '55442', '2025-06-10', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 04:42:47', '2025-06-11 04:42:47'),
+	(28, 'asdas', 'asdas', 'PT.TEST', 130212, 'uj45y57u56', '2025-06-12', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 06:47:54', '2025-06-11 06:47:54'),
+	(29, 'asdas', 'asdas', 'PT.TEST', 130212, 'sdfd2323', '2025-06-11', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 06:47:54', '2025-06-11 06:47:54'),
+	(30, 'hertg', 'erger', 'PT.TEST', 130212, 'fwwwewfww', '2025-06-11', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 07:07:11', '2025-06-11 07:07:11'),
+	(31, 'asdas', 'asdas', 'PT.TEST', 130212, 'f2qfqe', '2025-06-11', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 08:49:47', '2025-06-11 08:49:47'),
+	(32, 'BOM 1111 CE', 'DEadaed', 'PT.TEST', 130212, 'qadwqdqw', '2025-06-11', 'MANUAL', 'BAWA_BARANG', '2025-06-11', '2025-06-11 08:50:11', '2025-06-11 08:50:11'),
+	(33, 'hrtsh', 'rthrt', 'PT.TEST', 130212, NULL, NULL, 'MANUAL', 'KOSONG', '2025-06-12', '2025-06-12 00:16:30', '2025-06-12 00:16:30'),
+	(34, 'Luop 56566', 'Crank', 'PT.TEST', 130212, '556332', '2025-06-12', 'MANUAL', 'BAWA_BARANG', '2025-06-12', '2025-06-12 00:17:38', '2025-06-12 00:17:38'),
+	(35, 'qwd', 'qwed', 'PT.TEST', 130212, 'erg', '2025-06-12', 'MANUAL', 'BAWA_BARANG', '2025-06-12', '2025-06-12 00:18:13', '2025-06-12 00:18:13');
 
 -- Dumping structure for table sles.psx_entry
 CREATE TABLE IF NOT EXISTS `psx_entry` (
@@ -232,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `psx_out_entry` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table sles.psx_out_entry: ~0 rows (approximately)
+-- Dumping data for table sles.psx_out_entry: ~2 rows (approximately)
 INSERT INTO `psx_out_entry` (`id`, `process`, `sles_no`, `info_out`, `no_sj`, `date_sj`, `date_out`, `out`, `status`, `create_by`, `create_date`, `update_by`, `update_date`, `delete_by`, `delete_date`) VALUES
 	(35, 'SUPPLIER', 250514001, '1', 'AKAKAK', '2025-05-14', '2025-05-14', '08:12:44', 'ACTIVE', 'ADMIN', '2025-05-14', NULL, NULL, NULL, NULL),
 	(36, 'SUPPLIER', 250609002, '3', NULL, NULL, '2025-06-09', '08:11:27', 'ACTIVE', 'ADMIN', '2025-06-09', NULL, NULL, NULL, NULL);
