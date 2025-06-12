@@ -113,40 +113,41 @@
 <script src="{{ asset('Datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script>
 
-//barang
 
 
-$(document).ready(function () {
-    function loadMilkrunData() {
-        $.get("{{ route('milkrun.data') }}", function (data) {
-            let html = '';
-            data.forEach((entry, index) => {
-                html += `
-                    <tr>
-                        <td class="text-center">${index + 1}</td>
-                        <td class="text-center">${entry.dnsj_number}</td>
-                        <td>${entry.no_pol}</td>
-                        <td>${entry.status}</td>
-                        <td>${entry.vendor_name}</td>
-                        <td>${entry.vendor_id}</td>
-                        <td>${entry.date}</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-danger" data-id="${entry.id}">Delete</button>
-                        </td>
-                    </tr>
-                `;
-            });
-            $('#body_item').html(html);
-        }).fail(() => {
-            $('#body_item').html('<tr><td colspan="8" class="text-center text-danger">Failed to load data</td></tr>');
+
+function loadMilkrunData() {
+    $.get("{{ route('milkrun.data') }}", function (data) {
+        let html = '';
+        data.forEach((entry, index) => {
+            html += `
+                <tr>
+                    <td class="text-center">${index + 1}</td>
+                    <td class="text-center">${entry.dnsj_number ?? '-'}</td>
+                    <td>${entry.no_pol}</td>
+                    <td>${entry.status}</td>
+                    <td>${entry.vendor_name}</td>
+                    <td>${entry.vendor_id}</td>
+                    <td>${entry.date}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger" data-id="${entry.id}">Delete</button>
+                    </td>
+                </tr>
+            `;
         });
-    }
+        $('#body_item').html(html);
+    }).fail(() => {
+        $('#body_item').html('<tr><td colspan="8" class="text-center text-danger">Failed to load data</td></tr>');
+    });
+}
 
-    loadMilkrunData();
-});
+//barang
 let barangData = [];
 
 $(document).ready(function () {
+
+    loadMilkrunData();
+
     $('#addModalBawaBarang').on('click', function () {
         $('#modalBawaBarang').modal('show');
     });
